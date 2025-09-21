@@ -1,0 +1,3 @@
+# AVISO
+
+Aqui é a pasta na qual voce vai trabalhar a parte do frontend, então certifique-se de criar seus arquivos e modificaçoes de web dentro dela, você tambem pode mover os arquivos do projeto que você tinha feito antes para dentro dessa pasta, ou mover a pasta inteira para o projeto, renomear ela para "monarch-web" e depois apagar essa pasta, de qualquer forma peço para que delete esse aviso, assim não vamos ter um monte de arquivo inutil no projeto.
