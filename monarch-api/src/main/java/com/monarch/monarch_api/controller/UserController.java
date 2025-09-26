@@ -56,5 +56,16 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(userModel));
     }
-    
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Long id) {
+        Optional<User> user = repository.findById(id);
+
+        if(user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        repository.delete(user.get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
 }
