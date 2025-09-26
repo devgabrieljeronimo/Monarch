@@ -41,4 +41,20 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(user));
     }
 
+    @PutMapping("/update")
+    public ResponseEntity update(@PathVariable(value = "id") Long id, @RequestBody @Valid UserDto dto) {
+        Optional<User> user = repository.findById(id);
+
+        if(user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        else if(repository.findByEmail(dto.email()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        User userModel = user.get();
+        BeanUtils.copyProperties(dto, userModel);
+
+        return ResponseEntity.status(HttpStatus.OK).body(repository.save(userModel));
+    }
+
 }
