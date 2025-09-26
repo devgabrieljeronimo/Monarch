@@ -41,7 +41,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(user));
     }
 
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable(value = "id") Long id, @RequestBody @Valid UserDto dto) {
         Optional<User> user = repository.findById(id);
 
@@ -56,5 +56,5 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(userModel));
     }
-
+    
 }
