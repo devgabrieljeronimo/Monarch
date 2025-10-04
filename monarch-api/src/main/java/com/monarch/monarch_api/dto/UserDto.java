@@ -23,6 +23,6 @@ public record UserDto(
         String email,
 
         @NotBlank(message = "This field is required!")
-        @Size(min = 8, max = 16, message = "")
+        @Size(min = 8, max = 16, message = "The password must be between 8 and 16 characters long!")
         String password
 ) {}
