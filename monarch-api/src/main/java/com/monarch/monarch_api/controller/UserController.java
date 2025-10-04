@@ -41,6 +41,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(user));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity login() {
+        
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable(value = "id") Long id, @RequestBody @Valid UserDto dto) {
         Optional<User> user = repository.findById(id);
