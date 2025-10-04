@@ -1,5 +1,6 @@
 package com.monarch.monarch_api.controller;
 
+import com.monarch.monarch_api.dto.LoginRequest;
 import com.monarch.monarch_api.dto.UserDto;
 import com.monarch.monarch_api.model.User;
 import com.monarch.monarch_api.repository.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -42,8 +44,17 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login() {
-        
+    public ResponseEntity login(@RequestBody @Valid LoginRequest request) {
+        Optional<User> user = repository.findByEmail(request.email());
+
+        if(user.isPresent() && user.get().getPassword() != request.password()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        else if(user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(user.get());
     }
 
     @PutMapping("/{id}")
