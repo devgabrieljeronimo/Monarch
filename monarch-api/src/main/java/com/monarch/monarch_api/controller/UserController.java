@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity resgister(@RequestBody @Valid UserDto dto) {
+    public ResponseEntity register(@RequestBody @Valid UserDto dto) {
         if(repository.findByEmail(dto.email()).isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
