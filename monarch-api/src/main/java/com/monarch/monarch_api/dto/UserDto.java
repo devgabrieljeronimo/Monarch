@@ -1,6 +1,7 @@
 package com.monarch.monarch_api.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public record UserDto(
         @Size(max = 25, message = "Last name too long!")
         String lastName,
 
-        @NotBlank(message = "This field is required!")
+        @NotNull(message = "This field is required!")
         LocalDate birthdate,
 
         @NotBlank(message = "This field is required!")
